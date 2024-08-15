@@ -1,0 +1,28 @@
+!nvidia-smi
+
+import torch
+
+# Check PyTorch GPU availability
+if torch.cuda.is_available():
+    print(f"GPU Name: {torch.cuda.get_device_name(0)}")
+    print(f"GPU Is Available: {torch.cuda.is_available()}")
+else:
+    print("GPU is not available.")
+
+from google.colab import drive
+drive.mount('/content/gdrive')
+
+!ln -s /content/gdrive /mydrive
+
+%cd /mydrive/yolov9
+
+!git clone https://github.com/WongKinYiu/yolov9.git
+
+%cd yolov9
+!pip install -r requirements.txt
+
+!wget -P /mydrive/yolov9 https://github.com/WongKinYiu/yolov9/releases/download/v0.1/yolov9-c.pt
+!wget -P /mydrive/yolov9 https://github.com/WongKinYiu/yolov9/releases/download/v0.1/yolov9-e.pt
+
+// testing 
+!wget -P /mydrive/yolov9 -q https://cdn.pixabay.com/photo/2020/04/18/12/23/woman-5059062_960_720.jpg
